@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BloodConnect • All-in-One</title>
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- AOS Animations -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+
+  <style>
+    .tab {
+      display: none;
+    }
+
+    .active-tab {
+      display: block;
+    }
+
+    body {
+      scroll-behavior: smooth;
+    }
+  </style>
+</head>
+
+
+<body class="bg-gray-100 text-gray-900">
+
+  <!-- HEADER -->
+  <header class="bg-red-600 text-white shadow-lg">
+    <div class="max-w-6xl mx-auto p-4 flex justify-between items-center">
+      <h1 class="text-2xl font-bold tracking-wide" data-aos="fade-right">🩸 BloodConnect</h1>
+
+      <nav class="space-x-4 text-sm md:text-base" data-aos="fade-left">
+        <button onclick="showTab('home')" class="hover:underline">Home</button>
+        <button onclick="showTab('donor')" class="hover:underline">Register</button>
+        <button onclick="showTab('request')" class="hover:underline">Request</button>
+        <button onclick="showTab('search')" class="hover:underline">Search</button>
+        <button onclick="showTab('admin')" class="hover:underline">Admin</button>
+      </nav>
+    </div>
+  </header>
+
+
+  <!-- MAIN -->
+  <div class="max-w-6xl mx-auto p-6">
+
+    <!-- HOME -->
+    <div id="home" class="tab active-tab">
+      <h2 class="text-3xl font-bold mb-5" data-aos="zoom-in">Welcome to BloodConnect</h2>
+
+      <div class="grid md:grid-cols-2 gap-6">
+
+        <!-- Donor Card -->
+        <div onclick="showTab('donor')"
+          class="p-6 bg-white shadow rounded-xl hover:shadow-2xl transition cursor-pointer"
+          data-aos="fade-up">
+          <h3 class="text-xl font-semibold">Register as Donor</h3>
+          <p class="text-gray-600 mt-2">Become a life saver today.</p>
+        </div>
+
+        <!-- Request Card -->
+        <div onclick="showTab('request')"
+          class="p-6 bg-white shadow rounded-xl hover:shadow-2xl transition cursor-pointer"
+          data-aos="fade-up" data-aos-delay="150">
+          <h3 class="text-xl font-semibold">Create Blood Request</h3>
+          <p class="text-gray-600 mt-2">Post urgent blood needs easily.</p>
+        </div>
+
+        <!-- Search Card -->
+        <div onclick="showTab('search')"
+          class="p-6 bg-white shadow rounded-xl hover:shadow-2xl transition cursor-pointer md:col-span-2"
+          data-aos="fade-up" data-aos-delay="300">
+          <h3 class="text-xl font-semibold">Search Donors & Hospitals</h3>
+          <p class="text-gray-600 mt-2">Find matches instantly.</p>
+        </div>
+
+      </div>
+    </div>
+
+
+    <!-- DONOR -->
+    <div id="donor" class="tab">
+      <h2 class="text-2xl font-bold mb-4" data-aos="fade-right">Register as Donor</h2>
+
+      <form id="donorForm" class="bg-white p-5 rounded-xl shadow space-y-4" data-aos="fade-up">
+
+        <div class="grid md:grid-cols-2 gap-4">
+          <input class="border p-2 rounded" name="full_name" placeholder="Full Name" required />
+          <select class="border p-2 rounded" name="gender">
+            <option value="">Gender</option>
+            <option>Male</option>
+            <option>Female</option>
+            <option>Other</option>
+          </select>
+
+          <input class="border p-2 rounded" type="number" name="age" placeholder="Age" />
+          <select class="border p-2 rounded" name="blood_group" required>
+            <option value="">Blood Group</option>
+            <option>A+</option><option>A-</option>
+            <option>B+</option><option>B-</option>
+            <option>O+</option><option>O-</option>
+            <option>AB+</option><option>AB-</option>
+          </select>
+
+          <input class="border p-2 rounded" name="phone" placeholder="Phone" />
+          <input class="border p-2 rounded" name="email" placeholder="Email" />
+          <input class="border p-2 rounded" name="address" placeholder="Address" />
+          <input class="border p-2 rounded" name="last_donation_date" type="date" />
+        </div>
+
+        <button class="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700 transition">Submit</button>
+      </form>
+
+      <p id="donorMsg" class="mt-3 text-green-700 font-semibold"></p>
+    </div>
+
+
+    <!-- REQUEST -->
+    <div id="request" class="tab">
+      <h2 class="text-2xl font-bold mb-4" data-aos="fade-right">Create Blood Request</h2>
+
+      <form id="requestForm" class="bg-white p-5 rounded-xl shadow space-y-4" data-aos="fade-up">
+
+        <div class="grid md:grid-cols-2 gap-4">
+
+          <input class="border p-2 rounded" name="patient_name" placeholder="Patient Name" required />
+
+          <select class="border p-2 rounded" name="blood_group" required>
+            <option value="">Blood Group</option>
+            <option>A+</option><option>A-</option>
+            <option>B+</option><option>B-</option>
+            <option>O+</option><option>O-</option>
+            <option>AB+</option><option>AB-</option>
+          </select>
+
+          <input class="border p-2 rounded" name="units_needed" type="number" placeholder="Units Needed" required />
+
+          <input class="border p-2 rounded" name="contact_person" placeholder="Contact Person" required />
+
+          <input class="border p-2 rounded" name="contact_phone" placeholder="Contact Phone" required />
+
+          <input class="border p-2 rounded" name="needed_by" type="date" />
+        </div>
+
+        <input class="border p-2 rounded w-full" name="notes" placeholder="Notes (optional)" />
+
+        <button class="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700 transition">Submit</button>
+      </form>
+
+      <p id="reqMsg" class="mt-3 text-green-700 font-semibold"></p>
+    </div>
+
+
+
+    <!-- SEARCH -->
+    <div id="search" class="tab">
+      <h2 class="text-2xl font-bold mb-4" data-aos="fade-right">Search Donors & Hospitals</h2>
+
+      <div class="bg-white p-5 shadow rounded-xl space-y-4" data-aos="fade-up">
+
+        <div class="grid md:grid-cols-4 gap-4">
+          <select id="searchCity" class="border p-2 rounded"></select>
+
+          <select id="searchBG" class="border p-2 rounded">
+            <option value="">Any Blood Group</option>
+            <option>A+</option><option>A-</option>
+            <option>B+</option><option>B-</option>
+            <option>O+</option><option>O-</option>
+            <option>AB+</option><option>AB-</option>
+          </select>
+
+          <button id="findDonors" class="bg-red-600 text-white p-2 rounded hover:bg-red-700 transition">Find Donors</button>
+          <button id="findHospitals"
+            class="bg-gray-800 text-white p-2 rounded hover:bg-black transition">Hospitals</button>
+        </div>
+
+        <div id="results" class="text-sm space-y-3"></div>
+
+      </div>
+    </div>
+
+
+    <!-- ADMIN -->
+    <div id="admin" class="tab">
+      <h2 class="text-2xl font-bold mb-4" data-aos="fade-right">Admin Login</h2>
+
+      <form id="adminForm" class="bg-white p-5 rounded-xl shadow space-y-4" data-aos="fade-up">
+        <input class="border p-2 rounded w-full" name="email" placeholder="Email" value="admin@bloodconnect.local" />
+        <input class="border p-2 rounded w-full" type="password" name="password" placeholder="Password"
+          value="admin123" />
+
+        <button class="bg-gray-900 text-white px-4 py-2 rounded hover:bg-black transition">Login</button>
+      </form>
+
+      <div id="adminStats" class="mt-4 p-4 bg-white rounded-xl shadow hidden"></div>
+    </div>
+
+  </div>
+
+
+  <!-- JS: TAB HANDLER -->
+  <script>
+    function showTab(tab) {
+      document.querySelectorAll(".tab").forEach(t => t.classList.remove("active-tab"));
+      document.getElementById(tab).classList.add("active-tab");
+      window.scrollTo(0, 0);
+    }
+  </script>
+
+
+  <!-- JS: API CALLS -->
+  <script>
+    const API = "http://localhost:5000";
+
+    // Load Cities for dropdowns
+    async function loadCities() {
+      const res = await fetch(${API}/api/cities);
+      const cities = await res.json();
+      document.getElementById("searchCity").innerHTML =
+        '<option value="">Select City</option>' +
+        cities.map(c => <option value="${c.id}">${c.name}</option>).join("");
+    }
+    loadCities();
+
+
+    // Donor Registration
+    document.getElementById("donorForm").onsubmit = async (e) => {
+      e.preventDefault();
+      let data = Object.fromEntries(new FormData(e.target).entries());
+
+      let res = await fetch(${API}/api/donors, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data)
+      });
+
+      let out = await res.json();
+      document.getElementById("donorMsg").innerText = out.message || out.error;
+      if (res.ok) e.target.reset();
+    };
+
+
+    // Blood Request
+    document.getElementById("requestForm").onsubmit = async (e) => {
+      e.preventDefault();
+      let data = Object.fromEntries(new FormData(e.target).entries());
+
+      let res = await fetch(${API}/api/requests, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data)
+      });
+
+      let out = await res.json();
+      document.getElementById("reqMsg").innerText = out.message || out.error;
+      if (res.ok) e.target.reset();
+    };
+
+
+    // Search Donors
+    document.getElementById("findDonors").onclick = async () => {
+      const city = document.getElementById("searchCity").value;
+      const bg = document.getElementById("searchBG").value;
+
+      let url = ${API}/api/donors/search?city_id=${city}&blood_group=${bg};
+      let res = await fetch(url);
+      let donors = await res.json();
+
+      let html = donors.map(d =>
+        `<div class="p-3 border rounded">
+          <b>${d.full_name}</b> (${d.blood_group})
+          <div>${d.city}</div>
+          <div>${d.phone} | ${d.email}</div>
+        </div>`).join("");
+
+      document.getElementById("results").innerHTML = html || "No donors found.";
+    };
+
+    // Search Hospitals
+    document.getElementById("findHospitals").onclick = async () => {
+      const city = document.getElementById("searchCity").value;
+      let url = ${API}/api/hospitals?city_id=${city};
+
+      let res = await fetch(url);
+      let out = await res.json();
+
+      let html = out.map(h =>
+        `<div class="p-3 border rounded">
+          <b>${h.name}</b>
+          <div>${h.address || ''}</div>
+          <div>${h.phone || ''}</div>
+        </div>`).join("");
+
+      document.getElementById("results").innerHTML = html || "No hospitals found.";
+    };
+
+
+    // Admin Login
+    document.getElementById("adminForm").onsubmit = async (e) => {
+      e.preventDefault();
+      const data = Object.fromEntries(new FormData(e.target).entries());
+
+      let res = await fetch(${API}/api/auth/login, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data)
+      });
+
+      let out = await res.json();
+      if (!res.ok) {
+        alert("Invalid login");
+        return;
+      }
+
+      // Fetch Admin Stats
+      let stats = await fetch(${API}/api/admin/stats);
+      let st = await stats.json();
+
+      document.getElementById("adminStats").classList.remove("hidden");
+      document.getElementById("adminStats").innerHTML = `
+        <div class="grid grid-cols-2 gap-4">
+          <div class="p-3 rounded bg-gray-100">Donors: <b>${st.donors}</b></div>
+          <div class="p-3 rounded bg-gray-100">Open Requests: <b>${st.requests_open}</b></div>
+          <div class="p-3 rounded bg-gray-100">Hospitals: <b>${st.hospitals}</b></div>
+          <div class="p-3 rounded bg-gray-100">Cities: <b>${st.cities}</b></div>
+        </div>`;
+    };
+  </script>
+
+
+  <!-- AOS Init -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>AOS.init();</script>
+
+</body>
+</html>
